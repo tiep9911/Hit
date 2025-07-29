@@ -20,8 +20,14 @@ let currentData = {
   du_doan: ""
 };
 
+// =================================================================
+// === HÀM TIMESTAMP ĐÃ ĐƯỢC SỬA LẠI ĐỂ HIỂN THỊ ĐÚNG GIỜ VIỆT NAM ===
+// =================================================================
 function timestamp() {
-  return new Date().toLocaleTimeString("vi-VN", { hour12: false });
+  return new Date().toLocaleTimeString("vi-VN", {
+    timeZone: "Asia/Ho_Chi_Minh", // Chỉ định múi giờ Việt Nam
+    hour12: false
+  });
 }
 
 function predictFromMD5(md5) {
@@ -35,8 +41,8 @@ function connectWebSocket() {
   ws = new WebSocket(WS_URL, {
     headers: {
       "User-Agent": "Mozilla/5.0",
-      Origin: "https://i.hit.club",
-      Host: "mynygwais.hytsocesk.com"
+      "Origin": "https://i.hit.club",
+      "Host": "mynygwais.hytsocesk.com"
     }
   });
 
@@ -52,7 +58,7 @@ function connectWebSocket() {
       }
     ]));
 
-    // Gửi cmd 2001 lần đầu sau 1s
+    // Gửi cmd 2000 lần đầu sau 1s
     setTimeout(() => {
       ws.send(JSON.stringify([
         6, "MiniGame", "taixiuKCBPlugin", { cmd: 2000 }
