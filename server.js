@@ -61,7 +61,7 @@ function connectWebSocket() {
     // Gửi cmd 2000 lần đầu sau 1s
     setTimeout(() => {
       ws.send(JSON.stringify([
-        6, "MiniGame", "taixiuKCBPlugin", { cmd: 2000 }
+        6, "MiniGame", "taixiuKCBPlugin", { cmd: 2001 }
       ]));
     }, 1000);
 
